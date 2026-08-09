@@ -9,6 +9,7 @@
   --prisio: #ec6a2c;
   --nota: #bff233;
   --lonekoll: #57a96f;
+  --timetime: #c94f32;
   --radius: 20px;
 }
 
@@ -189,6 +190,28 @@ section.wrap {
 
 .app.lonekoll:hover {
   border-color: color-mix(in srgb, var(--lonekoll) 45%, transparent);
+}
+
+.app.timetime:hover {
+  border-color: color-mix(in srgb, var(--timetime) 45%, transparent);
+}
+
+.timetime .site-link:hover {
+  border-color: var(--timetime);
+}
+
+.soon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--timetime);
+  border: 1px solid color-mix(in srgb, var(--timetime) 55%, transparent);
 }
 
 .app img.icon {

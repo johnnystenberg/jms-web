@@ -10,6 +10,7 @@
   --nota: #bff233;
   --lonekoll: #57a96f;
   --timetime: #c94f32;
+  --attni: #d9532b;
   --radius: 20px;
 }
 
@@ -198,6 +199,66 @@ section.wrap {
 
 .timetime .site-link:hover {
   border-color: var(--timetime);
+}
+
+.app.attni:hover {
+  border-color: color-mix(in srgb, var(--attni) 45%, transparent);
+}
+
+.attni .site-link:hover {
+  border-color: var(--attni);
+}
+
+/* App subpage (e.g. /attni/) */
+.hero img.app-hero-icon {
+  width: 112px;
+  height: 112px;
+  border-radius: 26px;
+  margin-bottom: 28px;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.step {
+  padding: 26px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.step .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--attni) 18%, transparent);
+  color: var(--attni);
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.step h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.step p {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+
+@media (max-width: 700px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
 }
 
 .soon {

@@ -386,3 +386,224 @@ footer {
     padding: 80px 0 60px;
   }
 }
+
+/* App mini-site (e.g. /lonekoll/) */
+.app-nav {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 30px;
+  font-size: 0.9rem;
+}
+
+.app-nav a {
+  color: var(--muted);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.app-nav a:hover,
+.app-nav a.active {
+  color: var(--text);
+  border-color: var(--faint);
+}
+
+.stores {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 34px;
+}
+
+.stores img.badge {
+  height: 48px;
+  display: block;
+}
+
+.stores .soon-badge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 11px 20px;
+}
+
+.countries {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 26px;
+}
+
+.countries span {
+  font-size: 0.82rem;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 13px;
+}
+
+.steps.lonekoll .num {
+  background: color-mix(in srgb, var(--lonekoll) 18%, transparent);
+  color: var(--lonekoll);
+}
+
+.steps.two {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.step ul {
+  margin: 8px 0 0 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.step ul li + li {
+  margin-top: 4px;
+}
+
+/* Promo player: hidden until a video exists at data-src */
+.promo {
+  display: none;
+}
+
+.promo.has-video {
+  display: block;
+}
+
+.promo video {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 9 / 16;
+  margin: 0 auto;
+  border-radius: 28px;
+  border: 1px solid var(--border);
+  background: #000;
+}
+
+.promo p.caption {
+  margin-top: 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+
+/* Prose pages (privacy, support) */
+.page-head {
+  padding: 80px 24px 30px;
+}
+
+.page-head h1 {
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.page-head .updated {
+  margin-top: 8px;
+  color: var(--faint);
+  font-size: 0.88rem;
+}
+
+.prose > * {
+  max-width: 44em;
+}
+
+.prose h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 44px 0 14px;
+  letter-spacing: -0.01em;
+}
+
+.prose h3 {
+  font-size: 1.02rem;
+  font-weight: 700;
+  margin: 26px 0 6px;
+}
+
+.prose p,
+.prose li {
+  color: var(--muted);
+  font-size: 0.97rem;
+}
+
+.prose p + p {
+  margin-top: 10px;
+}
+
+.prose ul {
+  margin: 8px 0 0 20px;
+}
+
+.prose li + li {
+  margin-top: 4px;
+}
+
+.prose a {
+  color: var(--lonekoll);
+  border-bottom: 1px solid color-mix(in srgb, var(--lonekoll) 40%, transparent);
+}
+
+.prose a:hover {
+  border-color: var(--lonekoll);
+}
+
+.faq details {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 0 22px;
+  margin-bottom: 10px;
+}
+
+.faq summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 17px 0;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  color: var(--faint);
+  font-weight: 400;
+  flex-shrink: 0;
+}
+
+.faq details[open] summary::after {
+  content: "−";
+}
+
+.faq details p {
+  padding: 0 0 18px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 700px) {
+  .steps.two {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lonekoll .site-link:hover {
+  border-color: var(--lonekoll);
+}
+
+.wrap.prose {
+  padding-bottom: 70px;
+}

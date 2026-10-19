@@ -371,6 +371,13 @@ footer {
   font-size: 0.85rem;
 }
 
+footer .legal {
+  max-width: 44em;
+  margin: 12px auto 0;
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
 @media (max-width: 560px) {
   .app {
     grid-template-columns: 1fr;

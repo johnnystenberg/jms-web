@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JMS Software &amp; Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== Design tokens ===== */
+  :root {
+    --color-bg: #0B0C0E;
+    --color-surface: #15171B;
+    --color-surface-alt: #111316;
+    --color-border: #262A31;
+    --color-border-subtle: #1E2127;
+    --color-border-control: #30343C;
+    --color-text: #F2F3F5;
+    --color-text-body: #C9CDD4;
+    --color-text-muted: #A1A7B3;
+    --color-text-faint: #8A909C;
+    --color-brand: #3D5AFE;
+    --color-link: #8FA3FF;
+    --color-link-hover: #B8C5FF;
+    --color-ok-bg: #12301C;   --color-ok-fg: #7EE2A0;
+    --color-soon-bg: #33240C; --color-soon-fg: #FFC46B;
+
+    --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --container: 1160px;
+    --gutter: 24px;
+
+    --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+    --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-12: 48px;
+    --space-14: 56px; --space-18: 72px; --space-22: 88px;
+
+    --radius-sm: 7px; --radius-md: 12px; --radius-icon: 14px;
+    --radius-card: 20px; --radius-pill: 999px;
+
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  body { margin: 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: var(--color-link); }
+  a:hover { color: var(--color-link-hover); }
+  :focus-visible { outline: 2px solid var(--color-link); outline-offset: 3px; border-radius: 6px; }
+  .container { max-width: var(--container); margin: 0 auto; padding-inline: var(--gutter); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* ===== Header ===== */
+  .site-header { border-bottom: 1px solid var(--color-border-subtle); }
+  .site-header .container { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; justify-content: space-between; padding-block: var(--space-5); }
+  .logo img { display: block; height: 44px; width: auto; }
+  .nav { display: flex; gap: var(--space-6); align-items: center; font-size: 15px; }
+  .nav > a { color: var(--color-text); text-decoration: none; }
+  .nav > a:hover { color: var(--color-link-hover); }
+  .lang { display: flex; gap: var(--space-1); padding: 3px; border-radius: 10px; background: var(--color-surface); font-size: 13px; font-weight: 600; }
+  .lang a { padding: 6px 10px; border-radius: var(--radius-sm); color: var(--color-text-muted); text-decoration: none; }
+  .lang a[aria-current="true"] { background: var(--color-text); color: var(--color-bg); }
+
+  /* ===== Hero ===== */
+  .hero { padding-block: var(--space-18) var(--space-12); }
+  .hero h1 { margin: 0; max-width: 760px; font-size: clamp(36px, 5vw, 60px); line-height: 1.04; letter-spacing: -0.025em; font-weight: 700; }
+  .hero h1 .dot { color: var(--color-brand); }
+  .hero p { margin: var(--space-5) 0 0; max-width: 600px; font-size: 19px; line-height: 1.5; color: var(--color-text-muted); }
+
+  /* ===== Apps ===== */
+  .apps { padding-block: var(--space-4) var(--space-22); }
+  .apps-head { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: flex-end; justify-content: space-between; margin-bottom: var(--space-6); }
+  .apps-head h2 { margin: 0; font-size: 28px; letter-spacing: -0.01em; }
+  .filters { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .chip { font: inherit; font-size: 14px; font-weight: 500; min-height: 40px; padding: 8px 16px; border-radius: var(--radius-pill); cursor: pointer;
+          border: 1px solid var(--color-border-control); background: transparent; color: var(--color-text);
+          transition: background-color .15s var(--ease), border-color .15s var(--ease), color .15s var(--ease); }
+  .chip:hover { border-color: #4A505B; }
+  .chip[aria-pressed="true"] { background: var(--color-brand); border-color: var(--color-brand); color: #fff; }
+  .chip .count { opacity: .6; margin-left: var(--space-1); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-4); list-style: none; margin: 0; padding: 0; }
+  .card { display: flex; flex-direction: column; gap: var(--space-4); height: 100%; padding: var(--space-6); border-radius: var(--radius-card);
+          background: var(--color-surface); border: 1px solid var(--color-border);
+          transition: border-color .2s var(--ease), transform .2s var(--ease); }
+  .card:hover { border-color: #3A3F48; transform: translateY(-2px); }
+  .card[hidden] { display: none; }
+  .card-head { display: flex; gap: var(--space-4); align-items: center; }
+  .app-icon { width: 56px; height: 56px; flex: none; border-radius: var(--radius-icon); object-fit: cover;
+              display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: #fff; }
+  .card h3 { margin: 0; font-size: 19px; }
+  .card .tagline { margin: 2px 0 0; font-size: 14px; color: var(--color-text-muted); }
+  .card .desc { margin: 0; flex: 1; font-size: 15px; line-height: 1.55; color: var(--color-text-body); }
+  .card-meta { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; justify-content: space-between; }
+  .badge { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: var(--radius-pill); }
+  .badge--live { background: var(--color-ok-bg); color: var(--color-ok-fg); }
+  .badge--soon { background: var(--color-soon-bg); color: var(--color-soon-fg); }
+  .platforms { font-size: 13px; color: var(--color-text-muted); }
+  .card-link { padding-top: 14px; border-top: 1px solid var(--color-border); font-size: 15px; font-weight: 600; text-decoration: none; }
+  .empty { padding: var(--space-12) var(--space-6); border: 1px dashed var(--color-border-control); border-radius: var(--radius-card); text-align: center; color: var(--color-text-muted); }
+
+  /* ===== Contact & footer ===== */
+  .contact { background: var(--color-surface-alt); border-top: 1px solid var(--color-border-subtle); }
+  .contact .container { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; justify-content: space-between; padding-block: var(--space-14); }
+  .contact h2 { margin: 0; font-size: 28px; }
+  .contact p { margin: var(--space-2) 0 0; color: var(--color-text-muted); font-size: 16px; }
+  .btn-primary { font-size: 17px; font-weight: 600; padding: 14px 22px; border-radius: var(--radius-md); background: var(--color-text); color: var(--color-bg); text-decoration: none; transition: background-color .15s var(--ease); }
+  .btn-primary:hover { background: #fff; color: var(--color-bg); }
+  .site-footer { background: var(--color-surface-alt); }
+  .site-footer .container { padding-block: var(--space-6) var(--space-8); font-size: 12px; line-height: 1.6; color: var(--color-text-faint); }
+
+  @media (max-width: 600px) {
+    .hero { padding-block: var(--space-12) var(--space-8); }
+    .hero p { font-size: 17px; }
+    .nav { gap: var(--space-4); }
+    .logo img { height: 36px; }
+    /* Filters scroll sideways on phones instead of wrapping into 3 rows */
+    .filters { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scrollbar-width: none; width: calc(100% + var(--gutter) * 2); }
+    .filters::-webkit-scrollbar { display: none; }
+    .chip { flex: none; }
+    .btn-primary { width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="/"><img src="../assets/jms-logo-light.png" alt="JMS Software &amp; Consulting – home"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#apps">Apps</a>
+      <a href="#contact">Contact</a>
+      <span class="lang">
+        <a href="/" aria-current="true" lang="en">EN</a>
+        <a href="/sv/" lang="sv">SV</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero container">
+    <h1>Software, made simple &amp; useful<span class="dot">.</span></h1>
+    <p>JMS is an independent Swedish software studio that builds focused consumer apps.</p>
+  </section>
+
+  <section id="apps" class="apps container" aria-labelledby="apps-title">
+    <div class="apps-head">
+      <h2 id="apps-title">Our apps</h2>
+      <div class="filters" role="group" aria-label="Filter apps" id="filters"></div>
+    </div>
+    <p class="sr-only" aria-live="polite" id="filter-status"></p>
+    <ul class="grid" id="grid"></ul>
+    <p class="empty" id="empty" hidden>No apps in this category yet.</p>
+  </section>
+</main>
+
+<section id="contact" class="contact" aria-labelledby="contact-title">
+  <div class="container">
+    <div>
+      <h2 id="contact-title">Get in touch</h2>
+      <p>Questions about the apps or anything else.</p>
+    </div>
+    <a class="btn-primary" href="mailto:kontakt@jmssoftware.se">kontakt@jmssoftware.se</a>
+  </div>
+</section>
+<footer class="site-footer">
+  <div class="container">© 2026 JMS Software &amp; Consulting. Apple, the Apple logo, iPhone and App Store are trademarks of Apple Inc. Google Play is a trademark of Google LLC.</div>
+</footer>
+
+<script>
+/* ===== Data — the only thing to edit when adding an app ===== */
+const CATEGORIES = [
+  { id: 'all',    label: 'All' },
+  { id: 'money',  label: 'Money & everyday' },
+  { id: 'travel', label: 'Travel' },
+  { id: 'work',   label: 'Teams & work' },
+  { id: 'soon',   label: 'Coming soon' } // virtual: status === 'soon'
+];
+
+const APPS = [
+  { name: 'Prisio',   tagline: 'Price Scanner',            category: 'travel', status: 'live', platforms: ['iOS','Android'],    url: 'https://prisio.io',     linkLabel: 'prisio.io',     icon: null, color: '#C2410C', fg: '#FFFFFF',
+    desc: 'Point your camera at a price tag abroad to see its cost in your own currency.' },
+  { name: 'nota.',    tagline: 'Split the bill',           category: 'money',  status: 'live', platforms: ['iOS','Android'],    url: 'https://notan.nu',      linkLabel: 'notan.nu',      icon: null, color: '#F2F3F5', fg: '#0B0C0E',
+    desc: 'One person scans the receipt, everyone else opens a link and picks their items. No download needed.' },
+  { name: 'Lönekoll', tagline: 'Take-home pay',            category: 'money',  status: 'live', platforms: ['iOS','Android'],    url: '/lonekoll/',            linkLabel: 'Learn more',    icon: null, color: '#1E7B3A', fg: '#FFFFFF',
+    desc: 'Enter your gross salary and see your net pay after tax in Sweden, Denmark, the UK and Germany.' },
+  { name: 'TimeTime', tagline: 'Time reporting for teams', category: 'work',   status: 'soon', platforms: ['iPhone','Android'], url: 'https://timetime.work', linkLabel: 'timetime.work', icon: null, color: '#1D5FD1', fg: '#FFFFFF',
+    desc: 'Log time in three taps against shared team activities. An invite link adds colleagues without accounts.' },
+  { name: 'Attni',    tagline: 'Activities & attendance',  category: 'work',   status: 'soon', platforms: ['iPhone'],           url: '/attni/',               linkLabel: 'Learn more',    icon: null, color: '#6D3FD9', fg: '#FFFFFF',
+    desc: 'Create an activity and share a link. People respond without an account and everyone sees who is coming.' }
+];
+
+/* ===== Rendering ===== */
+const matches = (app, cat) => cat === 'all' || (cat === 'soon' ? app.status === 'soon' : app.category === cat);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
+
+const grid = document.getElementById('grid');
+grid.innerHTML = APPS.map((a, i) => `
+  <li class="card" data-i="${i}">
+    <div class="card-head">
+      ${a.icon
+        ? `<img class="app-icon" src="${esc(a.icon)}" alt="" width="56" height="56">`
+        : `<div class="app-icon" aria-hidden="true" style="background:${a.color};color:${a.fg}">${esc(a.name[0].toUpperCase())}</div>`}
+      <div>
+        <h3>${esc(a.name)}</h3>
+        <p class="tagline">${esc(a.tagline)}</p>
+      </div>
+    </div>
+    <p class="desc">${esc(a.desc)}</p>
+    <div class="card-meta">
+      <span class="badge badge--${a.status}">${a.status === 'live' ? 'Available' : 'Coming soon'}</span>
+      <span class="platforms">${a.platforms.map(esc).join(' · ')}</span>
+    </div>
+    <a class="card-link" href="${esc(a.url)}">${esc(a.linkLabel)} <span aria-hidden="true">→</span><span class="sr-only"> – ${esc(a.name)}</span></a>
+  </li>`).join('');
+
+const filters = document.getElementById('filters');
+filters.innerHTML = CATEGORIES
+  .map(c => ({ ...c, n: APPS.filter(a => matches(a, c.id)).length }))
+  .filter(c => c.id === 'all' || c.n > 0) // hide empty categories
+  .map(c => `<button type="button" class="chip" data-cat="${c.id}" aria-pressed="false">${esc(c.label)}<span class="count">${c.n}</span></button>`)
+  .join('');
+
+function apply(cat) {
+  let shown = 0;
+  grid.querySelectorAll('.card').forEach(el => {
+    const ok = matches(APPS[+el.dataset.i], cat);
+    el.hidden = !ok; if (ok) shown++;
+  });
+  filters.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cat === cat)));
+  document.getElementById('empty').hidden = shown > 0;
+  const label = CATEGORIES.find(c => c.id === cat).label;
+  document.getElementById('filter-status').textContent = `${label}: ${shown} ${shown === 1 ? 'app' : 'apps'}`;
+  const url = new URL(location); cat === 'all' ? url.searchParams.delete('cat') : url.searchParams.set('cat', cat);
+  history.replaceState(null, '', url);
+}
+filters.addEventListener('click', e => { const b = e.target.closest('.chip'); if (b) apply(b.dataset.cat); });
+const initial = new URLSearchParams(location.search).get('cat');
+apply(CATEGORIES.some(c => c.id === initial) ? initial : 'all');
+</script>
+</body>
+</html>
